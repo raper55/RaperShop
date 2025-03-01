@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="th">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <title>RaperShop - ร้านขายของออนไลน์</title>
+    <style>
+        body {
+            background-color: #f3e5f5;
+            color: #4a148c;
+            font-family: Arial, sans-serif;
+            text-align: center;
+        }
+
+        header {
+            background-color: #6a1b9a;
+            padding: 15px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .product button,
+        .cart button {
+            background-color: #8e24aa;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .cart {
+            background: white;
+            padding: 20px;
+            margin: 20px auto;
+            width: 50%;
+            border-radius: 10px;
+        }
+
+        .qr-code {
+            display: none; /* Initially hide the QR code */
+            margin: 10px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo">RaperShop</div>
+        <nav>
+            <ul>
+                <li><a href="#home">หน้าแรก</a></li>
+                <li><a href="#products">สินค้า</a></li>
+                <li><a href="#cart">ตะกร้าสินค้า</a></li>
+                <li><a href="#about">เกี่ยวกับเรา</a></li>
+                <li><a href="#contact">ติดต่อเรา</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section id="home" class="hero">
+        <h1>ยินดีต้อนรับสู่ RaperShop</h1>
+        <p>ผลิตภัณฑ์ที่ดีที่สุดเพื่อคุณ</p>
+        <a href="#products" class="cta-button">ดูสินค้า</a>
+    </section>
+
+    <section id="products">
+        <h2>สินค้า</h2>
+        <div class="product">
+            <img src="images/NEO COUGH.png" alt="NEO COUGH 100 ML">
+            <h3>NEO COUGH 100 ML</h3>
+            <p>
+                NEO COUGH 100 ML<br>
+                 Size: 100 ML<br>
+                 Color: Green (เขียว)<br>
+                 Import: France (ฝรั่งเศส)<br>
+                 Taste: Cough medicine (ยาแก้ไอ)<br>
+                 Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)
+            </p>
+            <p>ราคา: 250 บาท</p>
+            <button onclick="addToCart('NEO COUGH 100 ML', 250)">เพิ่มลงตะกร้า</button>
+        </div>
+        <div class="product">
+            <img src="images/NEO K.png" alt="NEO-K | FORTE SYRUP">
+            <h3>NEO-K | FORTE SYRUP</h3>
+            <p>
+                NEO-K FORTE SYRUP<br>
+                 Quantity : 1 BOX : 30 Packs = 600 ML (600 มล.)<br>
+                Import : Korea (เกาหลี)<br>
+                Effect : Warp, delay. (วาป, ดีเลย์)<br>
+                Dihydrocodeine 10 mg<br>
+            </p>
+            <p>ราคา: 950 บาท</p>
+            <button onclick="addToCart('NEO-K | FORTE SYRUP', 950)">เพิ่มลงตะกร้า</button>
+        </div>
+    </section>
+
+    <section id="cart" class="cart">
+        <h2>ตะกร้าสินค้า</h2>
+        <ul id="cart-items"></ul>
+        <img src="https://qr-official.line.me/gs/M_580plupr_GW.png?oat_content=qr" alt="QR Code" class="qr-code" id="line-qr-code" style="width: 150px;">
+        <p>รวมทั้งหมด: <span id="total-price">0</span> บาท</p>
+        <button onclick="checkout()">ไปที่หน้าชำระเงิน</button>
+        <button onclick="showQRCode()">แอดไลน์</button>
+    </section>
+
+    <script>
+        let cart = [];
+
+        function addToCart(name, price) {
+            let item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity++;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+            updateCart();
+        }
+
+        function updateCart() {
+            let cartList = document.getElementById('cart-items');
+            let totalPrice = 0;
+            cartList.innerHTML = '';
+            cart.forEach(item => {
+                let li = document.createElement('li');
+                li.innerHTML = `${item.name} - ${item.price} บาท x ${item.quantity} 
+                    <button onclick="removeFromCart('${item.name}')">ลบ</button>
+                    <button onclick="changeQuantity('${item.name}', 1)">+</button>
+                    <button onclick="changeQuantity('${item.name}', -1)">-</button>`;
+                cartList.appendChild(li);
+                totalPrice += item.price * item.quantity;
+            });
+            document.getElementById('total-price').innerText = totalPrice;
+        }
+
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            updateCart();
+        }
+
+        function changeQuantity(name, amount) {
+            let item = cart.find(i => i.name === name);
+            if (item) {
+                item.quantity += amount;
+                if (item.quantity <= 0) removeFromCart(name);
+            }
+            updateCart();
+        }
+
+        function checkout() {
+            alert('ไปที่หน้าชำระเงิน!');
+        }
+
+        function showQRCode() {
+            const qrCode = document.getElementById('line-qr-code');
+            qrCode.style.display = qrCode.style.display === 'none' ? 'block' : 'none';
+        }
+    </script>
+
+    <footer>
+        <p>&copy; 2025 RaperShop. สงวนลิขสิทธิ์.</p>
+        <div class="social-media">
+            <a href="#">Facebook</a>
+            <a href="#">Instagram</a>
+        </div>
+    </footer>
+</body>
+
+</html>
