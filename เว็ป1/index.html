@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="th">
 
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -12,6 +14,8 @@
             color: #4a148c;
             font-family: Arial, sans-serif;
             text-align: center;
+            margin: 0;
+            padding: 0;
         }
 
         header {
@@ -19,29 +23,212 @@
             padding: 15px;
             color: white;
             font-size: 24px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
         }
 
-        .product button,
-        .cart button {
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 15px;
+        }
+
+        nav ul li {
+            display: inline;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: white;
+            padding: 10px 15px;
+            border-radius: 5px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover {
+            background-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .products-container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 20px; /* spacing between products */
+            padding: 20px;
+        }
+
+        .product {
+            background: white;
+            padding: 20px;
+            width: 300px; /* Fixed width for products */
+            border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text to the left */
+        }
+
+        .product img {
+            max-width: 100%;
+            border-radius: 10px;
+        }
+
+        .product h3 {
+            margin: 10px 0;
+        }
+
+        .product button {
             background-color: #8e24aa;
             color: white;
             border: none;
             padding: 10px;
             cursor: pointer;
-            margin: 5px;
+            margin: 5px 0;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .product button:hover {
+            background-color: #7b1fa2;
         }
 
         .cart {
             background: white;
             padding: 20px;
             margin: 20px auto;
-            width: 50%;
+            width: 90%;
+            max-width: 600px;
             border-radius: 10px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart h2 {
+            margin: 0;
+            font-size: 28px;
+            color: #6a1b9a;
+        }
+
+        .cart ul {
+            list-style: none;
+            padding: 0;
+            margin: 10px 0;
+        }
+
+        .cart li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 10px 0;
+            padding: 10px;
+            background-color: #f8f8f8;
+            border-radius: 5px;
+            box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .cart li span {
+            flex-grow: 1;
+            text-align: left;
+            margin-left: 10px;
+        }
+
+        .cart button {
+            background-color: #f44336;
+            padding: 5px;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-left: 10px;
+            transition: background-color 0.3s;
+        }
+
+        .cart button:hover {
+            background-color: #d32f2f;
+        }
+
+        .quantity-buttons {
+            display: flex;
+            align-items: center;
+        }
+
+        .quantity-buttons button {
+            background-color: #6a1b9a;
+            border: none;
+            color: white;
+            border-radius: 5px;
+            padding: 5px;
+            cursor: pointer;
+            margin: 0 5px;
+        }
+
+        .quantity-buttons button:hover {
+            background-color: #5e35b1;
         }
 
         .qr-code {
-            display: none; /* Initially hide the QR code */
+            display: none;
             margin: 10px 0;
+        }
+
+        .line-button {
+            background-color: #06C755;
+            color: white;
+            font-weight: bold;
+            padding: 10px 15px;
+            border-radius: 25px;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            transition: 0.3s;
+            box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .line-button:hover {
+            background-color: #04A545;
+            transform: scale(1.05);
+        }
+
+        .line-icon {
+            width: 20px;
+            height: 20px;
+        }
+
+        footer {
+            margin-top: 20px;
+            font-size: 14px;
+            color: #6a1b9a;
+        }
+
+        .total-price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-top: 20px;
+        }
+
+        .checkout-button {
+            background-color: #6a1b9a;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .checkout-button:hover {
+            background-color: #5e35b1;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .cart {
+                width: 95%;
+            }
+
+            .product {
+                width: 95%;
+            }
         }
     </style>
 </head>
@@ -53,119 +240,503 @@
             <ul>
                 <li><a href="#home">หน้าแรก</a></li>
                 <li><a href="#products">สินค้า</a></li>
-                <li><a href="#cart">ตะกร้าสินค้า</a></li>
-                <li><a href="#about">เกี่ยวกับเรา</a></li>
-                <li><a href="#contact">ติดต่อเรา</a></li>
+                <li><a href="#product1">Pre-Order</a></li>
+                <li><a href="#cart"><i class="fas fa-shopping-cart"></i> ตะกร้า</a></li>
+            
+                <li>
+                    <a href="https://lin.ee/2g4Vg6X" class="line-button">
+                        <img src="images/—Pngtree— chat icon_3584855.png" alt="LINE" class="line-icon"> แอดไลน์กับเรา
+                    </a>
+                </li>
             </ul>
         </nav>
     </header>
 
-    <section id="home" class="hero">
-        <h1>ยินดีต้อนรับสู่ RaperShop</h1>
-        <p>ผลิตภัณฑ์ที่ดีที่สุดเพื่อคุณ</p>
-        <a href="#products" class="cta-button">ดูสินค้า</a>
-    </section>
+    <section id="products">
+        <h2>แนะนำ</h2>
+        <div class="products-container">
+
+<div class="product">
+    <img src="images/NEO COUGH 100 ML.jpg" alt="NEO COUGH 100 ML">
+    <h3>NEO COUGH 100 ML</h3>
+    <p>
+        Size: 100 ML<br>
+        Color: Green (เขียว)<br>
+        Import: France (ฝรั่งเศส)<br>
+        Taste: Cough medicine (ยาแก้ไอ)<br>
+        Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)
+    </p>
+    <p>ราคา: 300 บาท</p>
+    <button onclick="addToCart('NEO COUGH 100 ML', 300)">เพิ่มลงตะกร้า</button>
+</div>
+
+
+<div class="product">
+    <img src="images/PAI PHARMA 50 ML.jpg" alt="PAI PHARMA : 50 ML">
+    <h3>PAI PHARMA : 50 ML</h3>
+    <p>
+        Size: 50 ML<br>
+        Import: USA (เมกา)<br>
+        Water Color: PINK (ชมพู)<br>
+        Taste: GRAPE (องุ่น)<br>
+    </p>
+    <p>ราคา: 500 บาท</p>
+    <button onclick="addToCart('PAI PHARMA : 50 ML', 500)">เพิ่มลงตะกร้า</button>
+</div>
+
+<div class="product">
+    <img src="images/CODETHAZINE 60 ML.jpg" alt="CODETHAZINE 60 ML">
+    <h3>CODETHAZINE 60 ML</h3>
+    <p>
+        Size: 60 ML<br>
+        Import: Germany (เยอรมัน)<br>
+        Water Color: Green (สีเขียว)<br>
+        Taste: Cough medicine (ยาแก้ไอ)<br>
+    </p>
+    <p>ราคา: 300 บาท</p>
+    <button onclick="addToCart('CODETHAZINE 60 ML', 300)">เพิ่มลงตะกร้า</button>
+</div>
+    
+    <div class="product">
+        <img src="images/Purple.jpg" alt="Purple : 120 ML                ">
+        <h3>Purple : 120 ML </h3>
+        <p>
+            Size: 120 ML<br>               
+            Import : USA (สหรัฐอเมริกา)<br> 
+            สียาน้ำ :  สีม่วง (Puple)<br>  
+            รสชาติ : องุ่น (Grape)<br>           
+        </p>
+        <p>ราคา: 1000 บาท</p>
+        <button onclick="addToCart('Purple : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+    </div>
+
+    <div class="product">
+        <img src="images/Quasyrup Purple.jpg" alt="Quasyrup Purple : 120 ML                ">
+        <h3>Quasyrup Purple  : 120 ML </h3>
+        <p>
+            Size: 120 ML<br>               
+            Import : USA (สหรัฐอเมริกา)<br> 
+            สียาน้ำ :  แดง (Red)<br>  
+            รสชาติ : ไซรัป (Syrup)<br>           
+        </p>
+        <p>ราคา: 1000 บาท</p>
+        <button onclick="addToCart('Quasyrup Purple : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+    </div>
+
+
 
     <section id="products">
         <h2>สินค้า</h2>
+        <div class="products-container">
+            <div class="product">
+                <img src="images/NEO COUGH 100 ML.jpg" alt="NEO COUGH 100 ML">
+                <h3>NEO COUGH 100 ML</h3>
+                <p>
+                    Size: 100 ML<br>
+                    Color: Green (เขียว)<br>
+                    Import: France (ฝรั่งเศส)<br>
+                    Taste: Cough medicine (ยาแก้ไอ)<br>
+                    Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)
+                </p>
+                <p>ราคา: 300 บาท</p>
+                <button onclick="addToCart('NEO COUGH 100 ML', 300)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/NEO-K  FORTE SYRUP.jpg" alt="NEO-K | FORTE SYRUP">
+                <h3>NEO-K | FORTE SYRUP</h3>
+                <p>
+                    Quantity: 1 BOX : 30 Packs = 600 ML (600 มล.)<br>
+                    Import: Korea (เกาหลี)<br>
+                    Effect: Warp, delay. (วาป, ดีเลย์)<br>
+                    Dihydrocodeine 10 mg
+                </p>
+                <p>ราคา: 950 บาท</p>
+                <button onclick="addToCart('NEO-K | FORTE SYRUP', 950)">เพิ่มลงตะกร้า</button>
+            </div>
+            
+
+            <div class="product">
+                <img src="images/CODETHAZINE 60 ML.jpg" alt="CODETHAZINE 60 ML">
+                <h3>CODETHAZINE 60 ML</h3>
+                <p>
+                    Size: 60 ML<br>
+                    Import: Germany (เยอรมัน)<br>
+                    Water Color: Green (สีเขียว)<br>
+                    Taste: Cough medicine (ยาแก้ไอ)<br>
+                </p>
+                <p>ราคา: 300 บาท</p>
+                <button onclick="addToCart('CODETHAZINE 60 ML', 300)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/PAI PHARMA 50 ML.jpg" alt="PAI PHARMA : 50 ML">
+                <h3>PAI PHARMA : 50 ML</h3>
+                <p>
+                    Size: 50 ML<br>
+                    Import: USA (เมกา)<br>
+                    Water Color: PINK (ชมพู)<br>
+                    Taste: GRAPE (องุ่น)<br>
+                </p>
+                <p>ราคา: 500 บาท</p>
+                <button onclick="addToCart('PAI PHARMA : 50 ML', 500)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/Tusin Syrup95 M.jpg" alt="Tusin Syrup : 95 ML">
+                <h3>Tusin Syrup : 95 ML</h3>
+                <p>
+                    Size: 95 ML<br>
+                    Import: เกาหลี<br>
+                    Water Color: ส้ม<br>
+                    Taste: ส้ม<br>
+                </p>
+                <p>ราคา: 500 บาท</p>
+                <button onclick="addToCart('Tusin Syrup : 95 ML', 500)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/Phénergan Syrup.jpg" alt="Phénergan Syrup : 150 ml">
+                <h3>Phénergan Syrup : 150 ml</h3>
+                <p>
+                    Size: 150 ML<br>
+                    Import: France (ฝรั่งเศส)<br>
+                    Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)<br>          
+                </p>
+                <p>ราคา: 450 บาท</p>
+                <button onclick="addToCart('Phénergan Syrup : 150 ml', 450)">เพิ่มลงตะกร้า</button>
+            </div>
+            <div class="product">
+                <img src="images/ALLERGYL.jpg" alt="ALLERGYL : 100 ML">
+                <h3>ALLERGYL : 100 ML</h3>
+                <p>
+                    Size: 100 ML<br>
+                    Import: France (ฝรั่งเศส)<br>
+                    Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)<br>               
+                </p>
+                <p>ราคา: 250 บาท</p>
+                <button onclick="addToCart('ALLERGYL : 100 ML', 250)">เพิ่มลงตะกร้า</button>
+            </div>
+            <div class="product">
+                <img src="images/NEO CODION  180 ML.jpg" alt="NEO CODION : 180 ML                ">
+                <h3>NEO CODION : 180 ML </h3>
+                <p>
+                    Size: 180 ML<br>
+                    Color: Light ฺBlue ( ฟ้า )<br>
+                    Import: France (ฝรั่งเศส)<br> 
+                    Taste: Cough medicine (ยาแก้ไอ)<br>             
+                </p>
+                <p>ราคา: 1000 บาท</p>
+                <button onclick="addToCart('NEO CODION : 180 ML', 1000)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/ฟาเทคเขียว.jpg" alt="Fatec : 100 ML                ">
+                <h3>Fatec : 100 ML </h3>
+                <p>
+                    Size: 100 ML<br>               
+                    Import: thai (ไทย)<br> 
+                    Taste: Cough medicine (ยาแก้ไอ)<br>             
+                </p>
+                <p>ราคา: 200 บาท</p>
+                <button onclick="addToCart('Fatec : 100 ML', 200)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/ฟาเทคชมพู.jpg" alt="Fatec V1 : 100 ML                ">
+                <h3>Fatec V1 : 100 ML </h3>
+                <p>
+                    Size: 100 ML<br>               
+                    Import: thai (ไทย)<br> 
+                    Taste: Cough medicine (ยาแก้ไอ)<br>             
+                </p>
+                <p>ราคา: 200 บาท</p>
+                <button onclick="addToCart('Fatec V1 : 100 ML', 200)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/MARTEC60 ML.jpg" alt="MARTEC | 60 ML              ">
+                <h3>MARTEC | 60 ML </h3>
+                <p>
+                    Size: 60 ML<br>               
+                    Import: thai (ไทย)<br> 
+                    สียาน้ำ :  สีใส (clear color)<br> 
+                    รสชาติ : ไซรัป (SYRUP)<br>             
+                </p>
+                <p>ราคา: 200 บาท</p>
+                <button onclick="addToCart('MARTEC | 60 ML', 200)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/MARTEC60 ML V1.jpg" alt="MARTEC | 60 ML  V1            ">
+                <h3>MARTEC | 60 ML  V1 </h3>
+                <p>
+                    Size: 60 ML<br>               
+                    Import: thai (ไทย)<br> 
+                    สียาน้ำ :  สีใส (clear color)<br> 
+                    รสชาติ : ไซรัป (SYRUP)<br>             
+                </p>
+                <p>ราคา: 200 บาท</p>
+                <button onclick="addToCart('MARTEC | 60 ML V1', 200)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/bro-dextro.jpg" alt="BRO-DEXTRO : 60 ML                ">
+                <h3>BRO-DEXTRO : 60 ML </h3>
+                <p>
+                    Size: 60 ML<br>
+                    Color: ยาเป็นสีแดงชมพู <br>
+                    Import: France (ฝรั่งเศส)<br> 
+                    Taste: Cough medicine (ยาแก้ไอ)<br>             
+                </p>
+                <p>ราคา: 250 บาท</p>
+                <button onclick="addToCart('NEO CODION : 60 ML', 250)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            <div class="product">
+                <img src="images/ANTIHISTA-Hs.jpg" alt="ANTIHISTA-Hs 60 ML">
+                <h3>ANTIHISTA-Hs 60 ML</h3>
+                <p>
+                    Size: 60 ML<br>
+                    Color: Pink (ชมพู)<br>
+                    Import: France (ฝรั่งเศส)<br>
+                    
+                </p>
+                <p>ราคา: 250 บาท</p>
+                <button onclick="addToCart('ANTIHISTA-Hs 60 ML', 250)">เพิ่มลงตะกร้า</button>
+            </div>
+
+            
+            <div class="product">
+                <img src="images/TOSEINA2MG.jpg" alt="TOSEINA | 250 ML              ">
+                <h3>TOSEINA | 250 ML</h3>
+                <p>
+                    TOSEINA | 2 MG<br>
+                    Size : 250 ML <br>
+                    Type : Codeine 100%<br>
+                    Color : Pink (สีชมพู)<br> 
+                    Effect : Delay, Enjoyable (เคลิ้ม, หน่วง)<br>
+                    Import : Spain (สเปน)<br>
+          
+                </p>
+                <p>ราคา: 6000 บาท</p>
+                <button onclick="addToCart('TOSEINA | 250 ML', 6000)">เพิ่มลงตะกร้า</button>
+            </div>
+
+    </section>
+
+        <div class="products-container">
+
+            <div class="product">
+                <img src="images/EUPHON300 ML.jpg" alt="EUPHON | 300 ML              ">
+                <h3>EUPHON | 300 ML</h3>
+                <p>
+                    EUPHON | 300 ML<br>
+                    Size : 300 ML <br>
+                    Taste: Cough medicine (ยาแก้ไอ)<br>
+                    Color : แดง<br> 
+                    Effect : Delay, Enjoyable (เคลิ้ม, หน่วง)<br>
+                    Import :  ฝรั่งเศส<br>
+                </p>
+                <p>ราคา: 5000 บาท</p>
+                    <button onclick="addToCart('  EUPHON | 300 ML', 5000)">เพิ่มลงตะกร้า</button>
+                </div>
+
+            <div class="product">
+                <img src="images/Purple.jpg" alt="Purple : 480 ML                ">
+                <h3>Purple : 480 ML </h3>
+                <p>
+                    Size: 480 ML<br>               
+                    Import : USA (สหรัฐอเมริกา)<br> 
+                    สียาน้ำ :  สีม่วง (Puple)<br>  
+                    รสชาติ : องุ่น (Grape)<br>           
+                </p>
+                <p>ราคา: 4300 บาท</p>
+                <button onclick="addToCart('Purple : 480 ML', 4300)">เพิ่มลงตะกร้า</button>
+            </div>
+     
+            <div class="product">
+                <img src="images/Purple.jpg" alt="Purple : 120 ML                ">
+                <h3>Purple : 120 ML </h3>
+                <p>
+                    Size: 120 ML<br>               
+                    Import : USA (สหรัฐอเมริกา)<br> 
+                    สียาน้ำ :  สีม่วง (Puple)<br>  
+                    รสชาติ : องุ่น (Grape)<br>           
+                </p>
+                <p>ราคา: 1400 บาท</p>
+                <button onclick="addToCart('Purple : 120 ML', 1400)">เพิ่มลงตะกร้า</button>
+            </div>
+    
+            <div class="product">
+                <img src="images/Quasyrup Purple.jpg" alt="Quasyrup Purple : 120 ML                ">
+                <h3>Quasyrup Purple  : 120 ML </h3>
+                <p>
+                    Size: 120 ML<br>               
+                    Import : USA (สหรัฐอเมริกา)<br> 
+                    สียาน้ำ :  สีม่วง (Puple)<br>  
+                    รสชาติ : ไซรัป (Syrup)<br>           
+                </p>
+                <p>ราคา: 1400 บาท</p>
+                <button onclick="addToCart('Quasyrup Purple : 120 ML', 1400)">เพิ่มลงตะกร้า</button>
+            </div>
+    
+            
+            <div class="product">
+                <img src="images/Purple.jpg" alt="Purple : 60 ML                ">
+                <h3>Purple : 60 ML </h3>
+                <p>
+                    Size: 60 ML<br>               
+                    Import : USA (สหรัฐอเมริกา)<br> 
+                    สียาน้ำ :  สีม่วง (Puple)<br>  
+                    รสชาติ : องุ่น (Grape)<br>           
+                </p>
+                <p>ราคา: 800 บาท</p>
+                <button onclick="addToCart('Purple : 60 ML', 800)">เพิ่มลงตะกร้า</button>
+            </div>
+           
+    </section>
+
+   <section id="product1">
+    <h2>Pre-Order</h2>
+    <h2>เป็นการPre-OrderจากUSAทั้งหมดค่าจัดส่งผู้ซื้อเป็นคนออกทั้งหมดโดยใช้ระยะเวลา14-30วัน</h2>
+        (สั่งแล้วทางเราจะไม่คืนเงินทุกกรณีสั่งแล้วไม่รับถือว่าเป็นโมฆะ)
+    </h2>
+    <div class="products-container">
+     
         <div class="product">
-            <img src="images/NEO COUGH 100 ML.jpg" alt="NEO COUGH 100 ML">
-            <h3>NEO COUGH 100 ML</h3>
+            <img src="images/Purple.jpg" alt="Purple : 120 ML                ">
+            <h3>Purple : 120 ML </h3>
             <p>
-                NEO COUGH 100 ML<br>
-                 Size: 100 ML<br>
-                 Color: Green (เขียว)<br>
-                 Import: France (ฝรั่งเศส)<br>
-                 Taste: Cough medicine (ยาแก้ไอ)<br>
-                 Feeling: Slow, Enjoy (หน่วงๆ,เพลินๆ)
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ :  สีม่วง (Puple)<br>  
+                รสชาติ : องุ่น (Grape)<br>           
             </p>
-            <p>ราคา: 250 บาท</p>
-            <button onclick="addToCart('NEO COUGH 100 ML', 250)">เพิ่มลงตะกร้า</button>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Purple : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
         </div>
+
         <div class="product">
-            <img src="images/NEO K.png" alt="NEO-K | FORTE SYRUP">
-            <h3>NEO-K | FORTE SYRUP</h3>
+            <img src="images/Quasyrup Purple.jpg" alt="Quasyrup Purple : 120 ML                ">
+            <h3>Quasyrup Purple  : 120 ML </h3>
             <p>
-                NEO-K FORTE SYRUP<br>
-                 Quantity : 1 BOX : 30 Packs = 600 ML (600 มล.)<br>
-                Import : Korea (เกาหลี)<br>
-                Effect : Warp, delay. (วาป, ดีเลย์)<br>
-                Dihydrocodeine 10 mg<br>
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ :  แดง (Red)<br>  
+                รสชาติ : ไซรัป (Syrup)<br>           
             </p>
-            <p>ราคา: 950 บาท</p>
-            <button onclick="addToCart('NEO-K | FORTE SYRUP', 950)">เพิ่มลงตะกร้า</button>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Quasyrup Purple : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Green.jpg" alt="Green : 120 ML                ">
+            <h3> Green : 120 ML </h3>
+            <p>
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ :  สีเขียว (Green)<br>  
+                รสชาติ : ไซรัป (Syrup)<br>           
+            </p>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Green : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Purple Bubblegum Flavor.jpg" alt="Purple Bubblegum Flavor : 120 ML                ">
+            <h3> Purple Bubblegum Flavor : 120 ML </h3>
+            <p>
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ :  แดง (Red)<br>
+                รสชาติ : ไซรัป (Syrup)<br>           
+            </p>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Purple Bubblegum Flavor : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Yellow.jpg" alt="Yellow : 120 ML                ">
+            <h3> Yellow : 120 ML </h3>
+            <p>
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ :  เหลือง (Yellow)<br>
+                รสชาติ : ไซรัป (Syrup)<br>           
+            </p>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Yellow : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+        </div>
+
+        <div class="product">
+            <img src="images/Purple Peach-Mint Flavor.jpg" alt="Purple Peach-Mint Flavor : 120 ML                ">
+            <h3> Purple Peach-Mint Flavor : 120 ML </h3>
+            <p>
+                Size: 120 ML<br>               
+                Import : USA (สหรัฐอเมริกา)<br> 
+                สียาน้ำ : สีม่วง (Puple)<br>
+                รสชาติ : ไซรัป (Syrup)<br>           
+            </p>
+            <p>ราคา: 1000 บาท</p>
+            <button onclick="addToCart('Purple Peach-Mint Flavor : 120 ML', 1000)">เพิ่มลงตะกร้า</button>
+        </div>
+
+    +
+
+    <section id="cart">
+        <h2>ตะกร้าสินค้า</h2>
+        <div class="cart">
+            <ul id="cartItems"></ul>
+            <div class="total-price" id="totalPrice">รวม: 0 บาท</div>
+            <button class="checkout-button" onclick="checkout()">ชำระเงิน</button>
         </div>
     </section>
 
-    <section id="cart" class="cart">
-        <h2>ตะกร้าสินค้า</h2>
-        <ul id="cart-items"></ul>
-        <img src="https://qr-official.line.me/gs/M_580plupr_GW.png?oat_content=qr" alt="QR Code" class="qr-code" id="line-qr-code" style="width: 150px;">
-        <p>รวมทั้งหมด: <span id="total-price">0</span> บาท</p>
-        <button onclick="checkout()">ไปที่หน้าชำระเงิน</button>
-        <button onclick="showQRCode()">แอดไลน์</button>
-    </section>
+    <footer>
+        <p>&copy; 2025 RaperShop. สงวนสิทธิ์ทั้งหมด.</p>
+    </footer>
 
     <script>
         let cart = [];
 
-        function addToCart(name, price) {
-            let item = cart.find(i => i.name === name);
-            if (item) {
-                item.quantity++;
+        function addToCart(productName, productPrice) {
+            const existingProduct = cart.find(item => item.name === productName);
+            if (existingProduct) {
+                existingProduct.quantity++;
             } else {
-                cart.push({ name, price, quantity: 1 });
+                cart.push({ name: productName, price: productPrice, quantity: 1 });
             }
             updateCart();
         }
 
         function updateCart() {
-            let cartList = document.getElementById('cart-items');
+            const cartItemsContainer = document.getElementById('cartItems');
+            const totalPriceElement = document.getElementById('totalPrice');
+
+            cartItemsContainer.innerHTML = '';
             let totalPrice = 0;
-            cartList.innerHTML = '';
+
             cart.forEach(item => {
-                let li = document.createElement('li');
-                li.innerHTML = `${item.name} - ${item.price} บาท x ${item.quantity} 
-                    <button onclick="removeFromCart('${item.name}')">ลบ</button>
-                    <button onclick="changeQuantity('${item.name}', 1)">+</button>
-                    <button onclick="changeQuantity('${item.name}', -1)">-</button>`;
-                cartList.appendChild(li);
                 totalPrice += item.price * item.quantity;
+                cartItemsContainer.innerHTML += `<li>${item.name} x ${item.quantity} <span>${item.price * item.quantity} บาท</span><button onclick="removeFromCart('${item.name}')">ลบ</button></li>`;
             });
-            document.getElementById('total-price').innerText = totalPrice;
+
+            totalPriceElement.textContent = `รวม: ${totalPrice} บาท`;
         }
 
-        function removeFromCart(name) {
-            cart = cart.filter(item => item.name !== name);
-            updateCart();
-        }
-
-        function changeQuantity(name, amount) {
-            let item = cart.find(i => i.name === name);
-            if (item) {
-                item.quantity += amount;
-                if (item.quantity <= 0) removeFromCart(name);
-            }
+        function removeFromCart(productName) {
+            cart = cart.filter(item => item.name !== productName);
             updateCart();
         }
 
         function checkout() {
-            alert('ไปที่หน้าชำระเงิน!');
+            alert(' ชำระเงินโดยการโอนเงินเข้าบัญชีธนาคาร โดยหลังการชำระเงินกรุณาส่งหลักฐานยืนยันพร้อมเลขที่ใบสั่งซื้อ เพื่อดำเนินการส่งของต่อไป>>>> LINE ID : @580plupr');
+            cart = [];
+            updateCart();
         }
-
-        function showQRCode() {
-            const qrCode = document.getElementById('line-qr-code');
-            qrCode.style.display = qrCode.style.display === 'none' ? 'block' : 'none';
-        }
+        
     </script>
-
-    <footer>
-        <p>&copy; 2025 RaperShop. สงวนลิขสิทธิ์.</p>
-        <div class="social-media">
-            <a href="#">Facebook</a>
-            <a href="#">Instagram</a>
-        </div>
-    </footer>
 </body>
 
 </html>
